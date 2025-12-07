@@ -1,0 +1,5 @@
+[build]
+cmd = "composer install && npm install && npm run build"
+
+[start]
+cmd = "php -S 0.0.0.0:8000 -t public"
