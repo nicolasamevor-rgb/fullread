@@ -44,11 +44,3 @@ Route::put('/Updateemprunt/{pret}', [PretController::class, 'update'])->name(nam
 
 
 
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::middleware('admin')->group(function () {
-        Route::get('/admin', [AdminController::class, 'showdasboard'])->name('admin.dasboard');
-    })->name('client.dashboard');
-    Route::middleware('lecteur')->group(function () {
-        Route::get('/lecteur', [AdminController::class, 'showdasboard'])->name('admin.dasboard');
-    })->name('lecteur.dashboard');
-});
