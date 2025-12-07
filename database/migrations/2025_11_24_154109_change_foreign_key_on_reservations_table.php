@@ -10,21 +10,13 @@ return new class extends Migration {
      */
     public function up(): void
     {
+        // Cette migration supprimait eleve_id et ajoutait user_id
+        // Mais puisque nous utilisons une base vierge, eleve_id n'existe pas
+        // On vérifie simplement que user_id existe, sinon on l'ajoute
         Schema::table('reservations', function (Blueprint $table) {
-            // Suppression de l'ancienne clé étrangère
-            // Note: La colonne eleve_id était un foreignId créé initialement
-            if (Schema::hasColumn('reservations', 'eleve_id')) {
-                try {
-                    $table->dropForeign(['eleve_id']);
-                } catch (\Exception $e) {
-                    // Clé étrangère n'existe pas, on continue
-                }
-                $table->dropColumn('eleve_id');
-            }
-
-            // Ajout de la nouvelle clé étrangère
             if (!Schema::hasColumn('reservations', 'user_id')) {
                 $table->foreignID('user_id')
+                    ->nullable()
                     ->constrained('users')
                     ->onDelete('cascade');
             }
