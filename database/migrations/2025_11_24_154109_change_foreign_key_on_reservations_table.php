@@ -12,14 +12,22 @@ return new class extends Migration {
     {
         Schema::table('reservations', function (Blueprint $table) {
             // Suppression de l'ancienne clé étrangère
-            $table->dropForeign('eleve_id');
+            // Note: La colonne eleve_id était un foreignId créé initialement
+            if (Schema::hasColumn('reservations', 'eleve_id')) {
+                try {
+                    $table->dropForeign(['eleve_id']);
+                } catch (\Exception $e) {
+                    // Clé étrangère n'existe pas, on continue
+                }
+                $table->dropColumn('eleve_id');
+            }
 
             // Ajout de la nouvelle clé étrangère
-            $table->foreignID('user_id')
-                ->constrained('users')
-                ->onDelete('cascade');
-
-
+            if (!Schema::hasColumn('reservations', 'user_id')) {
+                $table->foreignID('user_id')
+                    ->constrained('users')
+                    ->onDelete('cascade');
+            }
         });
     }
 
