@@ -1,0 +1,13 @@
+[build]
+builder = "nixpacks"
+
+[build.nixpacks]
+pkgs = ["php82", "composer", "nodejs"]
+phases.setup.cmds = ["composer install", "npm install"]
+phases.build.cmds = ["npm run build"]
+
+[[build.nixpacks.phases.build.dependsOn]]
+phase = "setup"
+
+[start]
+cmd = "php -S 0.0.0.0:8000 -t public"
