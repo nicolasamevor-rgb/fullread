@@ -11,7 +11,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('reservations', function (Blueprint $table) {
-            $table->dropColumn('eleve_id');
+            // $table->dropColumn('eleve_id');
             $table->dropColumn('date_reservation');
 
         });
