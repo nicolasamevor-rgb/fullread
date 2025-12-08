@@ -28,7 +28,8 @@
                                 <td class="px-2 sm:px-6 py-2 sm:py-3">{{ $emprunt->created_at }}</td>
                                 <td class="px-2 sm:px-6 py-2 sm:py-3">{{ $emprunt->date_retour_prevue }}</td>
                                 <td class="px-2 sm:px-6 py-2 sm:py-3 text-orange-500">{{ $emprunt->date_retour_effective }}</td>
-                                <td class="px-2 sm:px-6 py-2 sm:py-3 text-green-500">{{ $emprunt->lecteur->name ?? 'N/A' }}</td>
+                                <td class="px-2 sm:px-6 py-2 sm:py-3 text-green-500">{{ $emprunt->reservation->user->name }}
+                                </td>
                                 <td class="px-2 sm:px-6 py-2 sm:py-3">{{ $emprunt->reservation->livre->titre }}</td>
                                 <td class="px-2 sm:px-6 py-2 sm:py-3">
                                     <button onclick="window.location.href='{{ route('emprunts.showdateretour', $emprunt) }}'"
