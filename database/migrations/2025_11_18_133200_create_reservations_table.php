@@ -18,10 +18,6 @@ return new class extends Migration {
             $table->foreignId('livre_id')
                 ->constrained('livres')
                 ->onDelete('cascade');
-            $table->foreignId('eleve_id')
-                ->constrained('eleves')
-                ->onDelete('cascade');
-
         });
     }
 
