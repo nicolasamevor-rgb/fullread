@@ -47,7 +47,7 @@ class AuthController extends Controller
         ]);
         $eleveController = new EleveController();
         $user = $eleveController->create($request);
-        Mail::to($user->email)->send(new WelcomeEmail($user));
+        // Mail::to($user->email)->send(new WelcomeEmail($user));
         return redirect()->route('login');
     }
     public function logout()
