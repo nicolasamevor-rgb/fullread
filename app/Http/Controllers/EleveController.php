@@ -31,7 +31,7 @@ class EleveController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        $user->assignRole('admin');
+        $user->assignRole('lecteur');
         return $user;
 
     }
