@@ -11,12 +11,7 @@
                 <strong class="font-bold">Succès</strong>
                 <span class="block sm:inline"> {{ session('success') }} </span>
             </div>
-            <script>
-                // Après 3 secondes, redirige vers le dashboard
-                setTimeout(function () {
-                    window.location.href = "{{ route('dashboard') }}";
-                }, 3000);
-            </script>
+
 
         @endif
         <form action="{{ route('registration.register')}}" class="mt-6" method="POST">
