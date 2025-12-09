@@ -108,7 +108,7 @@ class ReservationController extends Controller
     {
         $reservation->update($request->validated());
         $user = $reservation->user;
-        Mail::to($user->email)->send(new ValidationEmail($user, $reservation));
+        // Mail::to($user->email)->send(new ValidationEmail($user, $reservation));
 
         return redirect()->back();
     }
